@@ -4,12 +4,35 @@ package rfc4226
 import (
   "math" 
   "encoding/binary"
+  "github.com/mcaimi/go-hmac/rfc2104"
 )
 
 const (
   DBC_LEN = 4 // extract 4 bytes from the byte array during dynamic truncation
   VALID_TOKEN_LEN = 8
 )
+
+// the hmac object
+type HOTP struct {
+  key []byte;
+  interval []byte;
+  token_len int;
+  hmac_algo string;
+}
+
+// generate a new hotp object
+func NewHotp(key []byte, interval []byte, length int, algorithm string) HOTP {
+  var x HOTP;
+
+  // assign values
+  x.key = key;
+  x.interval = interval;
+  x.token_len = length;
+  x.hmac_algo = algorithm;
+
+  // return hotp object
+  return x;
+}
 
 // precompute all valid token lengths 
 // these are modulo dividends (10**i) where 0<i<VALID_TOKEN_LEN
@@ -30,7 +53,7 @@ func moduloLenghts(max_token_len int) []uint32 {
 //
 // byteString: 20-bytes long HMAC hash, encoded as a byte array
 //
-func DT(byteString []byte) []byte {
+func dT(byteString []byte) []byte {
   var offset uint32;
   var dbc []byte;
 
@@ -51,7 +74,7 @@ func DT(byteString []byte) []byte {
 // hmacPayload: 20-bytes long HMAC token
 // token_len: length of the computed token
 //
-func Modulo(hmacPayload []byte, token_len int) uint32 {
+func modulo(hmacPayload []byte, token_len int) uint32 {
   var moduli []uint32;
   var hotpByte []byte;
 
@@ -59,7 +82,7 @@ func Modulo(hmacPayload []byte, token_len int) uint32 {
   moduli = moduloLenghts(VALID_TOKEN_LEN);
 
   // perform dynamic truncation
-  hotpByte = DT(hmacPayload);
+  hotpByte = dT(hmacPayload);
 
   // convert and compute modulo
   // byte order is Big Endian
@@ -71,10 +94,10 @@ func Modulo(hmacPayload []byte, token_len int) uint32 {
 // key: the secret key (byte array)
 // interval: HOTP interval encoded as byte array
 // 
-func HotpToken(key []byte, interval []byte, token_len int, hmac_func func([]byte, []byte) []byte) uint32 {
+func (t *HOTP) HotpToken() uint32 {
   var token uint32;
 
-  token = Modulo(hmac_func(key, interval), token_len);
+  token = modulo(rfc2104.Hmac(t.key, t.interval, t.hmac_algo), t.token_len);
 
   // return computed value
   return token;

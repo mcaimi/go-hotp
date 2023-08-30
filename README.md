@@ -29,7 +29,7 @@ func main() {
   if err != nil {
     fmt.Println(err);
   } else {
-    token = rfc4226.HOTP(key, INTERVAL, 6);
+    token = rfc4226.Hotp(key, INTERVAL, 6, "sha1");
     fmt.Printf("%d\n", token);
   }
 }

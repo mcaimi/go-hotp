@@ -3,6 +3,7 @@ package rfc4226
 import (
   "fmt"
   "testing"
+  "encoding/binary"
   "encoding/hex"
 )
 
@@ -36,8 +37,11 @@ func TestHotp(t *testing.T) {
   t.Logf("SECRET: %q\n", secretBytes);
 
   for i := range TestVectors {
-    v := fmt.Sprintf("%d", HOTP(secretBytes, TestVectors[i].interval, 6));
-    t.Logf("HOTP Value: %q\n", v);
+    i_bytes := make([]byte, 8);
+    binary.BigEndian.PutUint64(i_bytes, TestVectors[i].interval);
+    h := NewHotp(secretBytes, i_bytes, 6, "sha1");
+    v := fmt.Sprintf("%d", h.HotpToken());
+    t.Logf("HOTP Value: %q, Reference: %q\n", v, TestVectors[i].result);
 
     if v != TestVectors[i].result {
       t.Fail();
