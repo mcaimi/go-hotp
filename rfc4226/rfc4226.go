@@ -4,7 +4,7 @@ package rfc4226
 import (
   "math" 
   "encoding/binary"
-  "github.com/mcaimi/go-hmac/rfc2104"
+  "codeberg.org/mcaimi/go-hmac/rfc2104"
 )
 
 const (

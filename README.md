@@ -13,7 +13,7 @@ package main
 import (
   "fmt"
   "encoding/hex"
-  "github.com/mcaimi/go-hotp/rfc4226"
+  "codeberg.org/mcaimi/go-hotp/rfc4226"
   )
 
 const (

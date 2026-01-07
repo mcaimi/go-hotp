@@ -1,5 +1,5 @@
-module github.com/mcaimi/go-hotp
+module codeberg.org/mcaimi/go-hotp
 
-go 1.21.0
+go 1.25.5
 
-require github.com/mcaimi/go-hmac v0.0.0-20230830072048-a23288e8925d
+require codeberg.org/mcaimi/go-hmac v0.0.0-20260107085440-38edd87e1876
