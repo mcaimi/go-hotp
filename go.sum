@@ -1,2 +1,2 @@
-codeberg.org/mcaimi/go-hmac v0.0.0-20260107085440-38edd87e1876 h1:iCb9U83A65u6WTTfyGl4PyyILvsiLyWDJQ2ZoqatBc0=
-codeberg.org/mcaimi/go-hmac v0.0.0-20260107085440-38edd87e1876/go.mod h1:1eJyElRXiUjtMOwPLwBsHQ+mGHHfnbgBgaYrHq53Nnw=
+github.com/mcaimi/go-hmac v0.0.0-20260107085440-38edd87e1876 h1:iCb9U83A65u6WTTfyGl4PyyILvsiLyWDJQ2ZoqatBc0=
+github.com/mcaimi/go-hmac v0.0.0-20260107085440-38edd87e1876/go.mod h1:1eJyElRXiUjtMOwPLwBsHQ+mGHHfnbgBgaYrHq53Nnw=
