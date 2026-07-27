@@ -1,2 +1,2 @@
-github.com/mcaimi/go-hmac v0.0.0-20260107085440-38edd87e1876 h1:lvu28BPGhf7UhK24rjnDDwXi8qtOAnt7fVJ9wPBx6pA=
-github.com/mcaimi/go-hmac v0.0.0-20260107085440-38edd87e1876/go.mod h1:1eJyElRXiUjtMOwPLwBsHQ+mGHHfnbgBgaYrHq53Nnw=
+github.com/mcaimi/go-hmac v0.0.0-20260727131713-6ac0abea3d15 h1:2Y1ULyj1X6zJnm7524utL2iKGSGgpuQBRKxrr8gQhm8=
+github.com/mcaimi/go-hmac v0.0.0-20260727131713-6ac0abea3d15/go.mod h1:TFz5EWilUF6P5fOulJqRcP2TvsoRYgIS2W5MwiBh7Pg=
